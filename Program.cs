@@ -1,7 +1,7 @@
-﻿//Implementazione algoritmi CRC64_ECMA_182 e CRC64_WE
-//Inserire un messaggio in un file di testo
-//Il programma chiederà quale algoritmo utilizzare e il path completo del file in input
-//Controllare che il file abbia il nome corretto (sempre nel medesimo path)
+﻿//CRC64_ECMA_182 and CRC64_WE
+//Insert a message in a text file
+//The program will ask which algorithm use and the complete path of the input file
+//The program will rename the name of the file by adding at the end test_*ECMA_182* or test_*WE*
 
 
 using System;
@@ -14,7 +14,7 @@ public class Program
 {
     static void Main(string[] args)
     {
-        int scelta;
+        int sw;
         string path;
         byte[] b;
 
@@ -25,15 +25,15 @@ public class Program
             Console.WriteLine("1 - CRC64_ECMA-182");
             Console.WriteLine("2 - CRC64_WE");
             Console.WriteLine("3 - Exit");
-            Console.Write("Scegli il protocollo da utilizzare: ");
-            scelta = Convert.ToInt32(Console.ReadLine());
-        } while (scelta < 1 || scelta > 3);
+            Console.Write("Choose the protocol to use: ");
+            sw = Convert.ToInt32(Console.ReadLine());
+        } while (sw < 1 || sw > 3);
 
-        switch (scelta)
+        switch (sw)
         {
             case 1:
 
-                Console.Write("Inserisci il path del file in input: ");
+                Console.Write("Enter the path of the input file: ");
                 path = Path.GetFullPath(Console.ReadLine());
 
                 using (var br = new BinaryReader(File.OpenRead(path)))
@@ -45,7 +45,7 @@ public class Program
 
                 File.Move(path, Path.Combine(Path.GetDirectoryName(path), Path.GetFileNameWithoutExtension(path) + "_" + CRC64_hexadecimal + Path.GetExtension(path)));
 
-                Console.WriteLine("Controllare che il file abbia il nome corretto.\nPremere invio per terminare il programma.");
+                Console.WriteLine("Check that the file has the correct name.\nPress enter to end the program.");
 
                 Console.ReadLine();
 
@@ -53,7 +53,7 @@ public class Program
 
             case 2:
 
-                Console.Write("Inserisci il path del file in input: ");
+                Console.Write("Enter the path of the input file: ");
                 path = Path.GetFullPath(Console.ReadLine());
 
                 using (var br = new BinaryReader(File.OpenRead(path)))
@@ -65,7 +65,7 @@ public class Program
 
                 File.Move(path, Path.Combine(Path.GetDirectoryName(path), Path.GetFileNameWithoutExtension(path) + "_" + CRC64_hexadecimal + Path.GetExtension(path)));
 
-                Console.WriteLine("Controllare che il file abbia il nome corretto.\nPremere invio per terminare il programma.");
+                Console.WriteLine("Check that the file has the correct name.\nPress enter to end the program.");
 
                 Console.ReadLine();
 
